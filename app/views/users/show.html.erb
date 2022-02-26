@@ -1,18 +1,26 @@
-<div>
+<main>
+<div class="container">
+  <div class="row">
+    <div class-"col-lg-4">
 <h2>User info</h2>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <h3>
+
+<%= image_tag @user.get_profile_image(63,63) %>
+<table class="table table-striped">
+  <thead>
     <tr>
-      <th>name</th>
-    <th><%= @user.name %></th>
-    </tr>
-  </h3>
-  <% if @user == current_user %>
-  <p><%= link_to "プロフィール編集",edit_user_path %></p>
-  <% end %>
+        <th>name</th>
+        <th><%= @user.name %></th>
 
-</div>
 
+        <th>introduction</th3>
+        <% @user.introduction %>
+   </tr>
+  </thead>
+</table>
+        <% if @user == current_user %>
+ <%= link_to "プロフィール編集",edit_user_path,class: "btn btn-secondary" %>
+   <i class="fa-solid fa-user-pen"></i>
+ <% end %>
 
 <h1>New Book</h1>
 <%= form_with model: @book do |f| %>
@@ -21,20 +29,34 @@
 
 <h4>Opinion</h4>
 <%= f.text_area :body %>
+<div>
+<%=f.submit'Create Book',class: "btn btn-success" %>
+ <% end %>
+</div>
+  </div>
 
-<%=f.submit'Create Book' %>
+<div class="col-lg-8" style="background-color: orange;">
+<h1>Books</h1>
+
+<table class="table table-striped">
+<tr>
+  <th></th>
+  <th>Title</th>
+  <th>Opinion</th>
+</tr>
+
+<tbody>
+  <% @books.each do |book| %>
+  <tr>
+  <td><%= image_tag book.user.get_profile_image(40,40) %></td>
+  <td><%= book.title %></td>
+  <td><%= book.body %></td>
+  </tr>
+</tbody>
 <% end %>
 
-<h1>Books</h1>
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-     <%= image_tag book.get_image %>
-  <% end %>
-  <p>投稿ユーザー画像:<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>Book:<%= book.title %></p>
-  <p>Opinion:<%= book.opinion %></p>
-  <p>ユーザーネーム:<%= book.user.name %></p>
 
 </div>
-<% end %>
+  </div>
+</div>
+</main>
