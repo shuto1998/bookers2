@@ -1,62 +1,45 @@
-<main>
-<div class="container">
-  <div class="row">
-    <div class-"col-lg-4">
-<h2>User info</h2>
+<%= flash[:notice] %>
+<h1>User#show</h1>
+  <div class="container">
+    <div class="row">
+      <div class-"col-lg-4">
+        <%= render 'user', user: @user %>
+          
+            <h1>New Book</h1>
+            <%= form_with model: @book do |f| %>
+              <h4>Title</h4>
+              <%= f.text_field :title %>
 
-<%= image_tag @user.get_profile_image(63,63) %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-        <th>name</th>
-        <th><%= @user.name %></th>
+              <h4>Opinion</h4>
+              <%= f.text_area :body %>
+            <div>
+            <%=f.submit'Create Book',class: "btn btn-success" %>
+             <% end %>
+            </div>
 
+      </div>
 
-        <th>introduction</th3>
-        <% @user.introduction %>
-   </tr>
-  </thead>
-</table>
-        <% if @user == current_user %>
- <%= link_to "プロフィール編集",edit_user_path,class: "btn btn-secondary" %>
-   <i class="fa-solid fa-user-pen"></i>
- <% end %>
+      <div class="col-lg-8" style="background-color: orange;">
+        <h1>Books</h1>
 
-<h1>New Book</h1>
-<%= form_with model: @book do |f| %>
-<h4>Title</h4>
-<%= f.text_field :title %>
+          <table class="table table-striped">
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+              </tr>
 
-<h4>Opinion</h4>
-<%= f.text_area :body %>
-<div>
-<%=f.submit'Create Book',class: "btn btn-success" %>
- <% end %>
-</div>
+              <tbody>
+                <% @books.each do |book| %>
+                <tr>
+                  <td><%= image_tag book.user.get_profile_image(40,40) %></td>
+                  <td><%= book.title %></td>
+                  <td><%= book.body %></td>
+                </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </div>
+
+    </div>
   </div>
-
-<div class="col-lg-8" style="background-color: orange;">
-<h1>Books</h1>
-
-<table class="table table-striped">
-<tr>
-  <th></th>
-  <th>Title</th>
-  <th>Opinion</th>
-</tr>
-
-<tbody>
-  <% @books.each do |book| %>
-  <tr>
-  <td><%= image_tag book.user.get_profile_image(40,40) %></td>
-  <td><%= book.title %></td>
-  <td><%= book.body %></td>
-  </tr>
-</tbody>
-<% end %>
-
-
-</div>
-  </div>
-</div>
-</main>

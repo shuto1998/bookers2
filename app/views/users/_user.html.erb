@@ -1,0 +1,19 @@
+<h2>User info</h2>
+  <%= image_tag user.get_profile_image(63,63) %>
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><% user.introduction %></th>
+          </tr>
+       </thead>
+     </table>
+    <% if user == current_user %>
+    <%= link_to edit_user_path(user.id),class: "btn btn-secondary" do %>
+    <i class="fa-solid fa-user-pen"></i>
+    <% end %>
+  <% end %>
