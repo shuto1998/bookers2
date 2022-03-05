@@ -1,18 +1,19 @@
 <%= flash[:notice] %>
 
-<h1>book#show</h1>
-<div class="container">
-  <div class="row">
-    <div class-"col-lg-4">
-<%= render 'users/user', user: @user %>
-  <% if @books.errors.any? %>
-  <%= @books.errors.count %>件のエラーが発生しました
+ <% if @books.errors.any? %>
+  <%= @books.errors.count %>errors prohibited this obj from being saved:
   <ul>
     <% @books.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
+<h1>book#show</h1>
+<div class="container">
+  <div class="row">
+    <div class-"col-lg-4">
+<%= render 'users/user', user: @user %>
+
 <h1>New Book</h1>
 <%= form_with model: @book do |f| %>
 <h4>Title</h4>
@@ -25,8 +26,7 @@
  <% end %>
 </div>
   </div>
-
-<div class="col-lg-8" style="background-color: orange;">
+<div class="col-lg-8 offset-md-1">
 <h1>Books detail</h1>
 
 <table class="table table-striped">
@@ -39,13 +39,13 @@
     <br><%= @books.user.name %>
     <% end %>
   </td>
-  
+
   <td><%= link_to @books.title %></td>
   <td><%= @books.body %></td>
    <% if @books.user == current_user %>
-  <td><%= link_to "edit", edit_book_path(@books.id) %></td>
- 
-  <td><%= link_to "destroy",book_path(@books.id),method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+  <td><%= link_to "edit", edit_book_path(@books.id),class: "btn btn-success" %></td>
+
+  <td><%= link_to "destroy",book_path(@books.id),method: :deletebtn, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
   <% end %>
   </tr>
 </tbody>

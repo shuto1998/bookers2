@@ -1,4 +1,14 @@
+<div class="row">
+<div class="col-md-6 offset-md-3">
 <h1>Editing Book</h1>
+ <% if @book.errors.any? %>
+    <%= @book.errors.count %>件のエラーが発生しました
+    <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    </ul>
+<% end %>
 <%= form_with model: @book do |f| %>
 <h4>Title</h4>
 <%= f.text_field :title %>
@@ -9,3 +19,5 @@
 <% end %>
 </div>
 <%= link_to "show", book_path(@book.id) %> | <%= link_to "back", books_path(@book.id) %>
+</div>
+</div>

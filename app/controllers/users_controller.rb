@@ -21,13 +21,13 @@ class UsersController < ApplicationController
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
     else
-    redirect_to user_path(@user.id)
+    render :edit
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name,:profile_image)
+    params.require(:user).permit(:name,:profile_image,:introduction)
   end
 end

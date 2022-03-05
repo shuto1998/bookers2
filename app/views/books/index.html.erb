@@ -1,9 +1,17 @@
 <h1>books#index</h1>
+<% if @book.errors.any? %>
+          <%= @book.errors.count %>errors prohibited this obj from being saved:
+          <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+          <% end %>
 <div class="container">
     <div class="row">
       <div class-"col-lg-4">
         <%= render 'users/user', user: @user %>
-
+          
                   <h1>New Book</h1>
                   <%= form_with model: @Book do |f| %>
                   <h4>Title</h4>
@@ -18,7 +26,7 @@
                   </div>
       </div>
 
-          <div class="col-lg-8" style="background-color: orange;">
+          <div class="col-lg-8 offset-md-1">
               <h1>Books</h1>
 
                   <table class="table table-striped">
