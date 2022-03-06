@@ -9,12 +9,12 @@
   </ul>
 <% end %>
 <h1>book#show</h1>
-<div class="container">
-  <div class="row">
-    <div class-"col-lg-4">
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
 <%= render 'users/user', user: @user %>
 
-<h1>New Book</h1>
+<h1>New book</h1>
 <%= form_with model: @book do |f| %>
 <h4>Title</h4>
 <%= f.text_field :title %>
@@ -26,8 +26,8 @@
  <% end %>
 </div>
   </div>
-<div class="col-lg-8 offset-md-1">
-<h1>Books detail</h1>
+<div class="col-md-8 offset-md-1">
+<h1>Book detail</h1>
 
 <table class="table table-striped">
 
@@ -43,9 +43,9 @@
   <td><%= link_to @books.title %></td>
   <td><%= @books.body %></td>
    <% if @books.user == current_user %>
-  <td><%= link_to "edit", edit_book_path(@books.id),class: "btn btn-success" %></td>
+  <td><%= link_to "Edit", edit_book_path(@books.id),class: "btn btn-success" %></td>
 
-  <td><%= link_to "destroy",book_path(@books.id),method: :deletebtn, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+  <td><%= link_to "Destroy",book_path(@books.id),method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
   <% end %>
   </tr>
 </tbody>
